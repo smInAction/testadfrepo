@@ -1,0 +1,63 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "testadf9876"
+		},
+		"SrcBlobLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SrcBlobLS'"
+		},
+		"SrcPngLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SrcPngLS'"
+		},
+		"TargetPngLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'TargetPngLS'"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "testadf9876_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SrcBlobLS_connectionString": {
+						"value": "[parameters('SrcBlobLS_connectionString')]"
+					},
+					"SrcPngLS_connectionString": {
+						"value": "[parameters('SrcPngLS_connectionString')]"
+					},
+					"TargetPngLS_connectionString": {
+						"value": "[parameters('TargetPngLS_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
