@@ -1,0 +1,22 @@
+{
+	"name": "SrcPngDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SrcPngLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "src-blob-container"
+			}
+		}
+	}
+}
