@@ -95,11 +95,29 @@
 										"type": "BinaryReadSettings"
 									}
 								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									}
+								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "SrcPngDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "TargetPngDataset",
 									"type": "DatasetReference"
 								}
 							]

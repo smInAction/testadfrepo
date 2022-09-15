@@ -1,0 +1,17 @@
+{
+	"name": "TargetPngDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TargetPngLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "target-blob-container"
+			}
+		}
+	}
+}
